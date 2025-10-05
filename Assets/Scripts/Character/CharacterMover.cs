@@ -10,6 +10,7 @@ public class CharacterMover : MonoBehaviour
     
     [Header("Movement Settings")]
     [SerializeField] private Vector3 moveDirection = Vector3.forward; // Direction to move
+    [SerializeField] private float rotationSpeed = 0.25f; // Speed of rotation
     [SerializeField] private float minMoveSpeed = 5f; // Speed of movement
     [SerializeField] private float maxMoveSpeed = 10f;
     
@@ -22,7 +23,9 @@ public class CharacterMover : MonoBehaviour
     private float _decelerationStartTime;
     private float _decelerationDuration = 2f;
     private Coroutine _decelerationCoroutine;
-    
+    private bool _isSliding = false;
+    private Vector2 _lastInputPos;
+
     public float MoveSpeed => _moveSpeed;
     public bool IsDecelerating => _isDecelerating;
     
@@ -42,16 +45,75 @@ public class CharacterMover : MonoBehaviour
 
     private void Update()
     {
+        RotationCharacter();
         MoveCharacter();
     }
     
     private void MoveCharacter()
     {
         // Calculate the movement vector
-        Vector3 movement = moveDirection.normalized * _moveSpeed * Time.deltaTime;
+        Vector3 movement = (isPlayer) ? transform.forward * _moveSpeed * Time.deltaTime : moveDirection.normalized * _moveSpeed * Time.deltaTime;
         transform.position += movement;
     }
-    
+
+    private void RotationCharacter()
+    {
+        if (!isPlayer)
+        {
+            return;
+            //Or make random movement for bot ?
+        }
+
+        //Touch
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    _isSliding = true;
+                    _lastInputPos = touch.position;
+                    break;
+
+                case TouchPhase.Moved:
+                    if (_isSliding)
+                    {
+                        float deltaX = touch.position.x - _lastInputPos.x;
+                        transform.Rotate(Vector3.up, deltaX * rotationSpeed);
+                        _lastInputPos = touch.position;
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                case TouchPhase.Canceled:
+                    _isSliding = false;
+                    break;
+            }
+        }
+
+        //Mouse
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _isSliding = true;
+                _lastInputPos = Input.mousePosition;
+            }
+            else if (Input.GetMouseButton(0) && _isSliding)
+            {
+                Vector2 mousePos = Input.mousePosition;
+                float deltaX = mousePos.x - _lastInputPos.x;
+                transform.Rotate(Vector3.up, deltaX * rotationSpeed);
+                _lastInputPos = mousePos;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                _isSliding = false;
+            }
+        }
+    }
+
     // Public methods for speed control
     public void SetMoveSpeed(float newSpeed)
     {
@@ -102,7 +164,7 @@ public class CharacterMover : MonoBehaviour
         
         while (elapsedTime < _decelerationDuration)
         {
-            elapsedTime = Time.time - _decelerationStartTime;
+            elapsedTime = Time.deltaTime - _decelerationStartTime;
             float normalizedTime = elapsedTime / _decelerationDuration;
             
             // Apply deceleration curve
