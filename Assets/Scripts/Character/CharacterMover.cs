@@ -10,10 +10,11 @@ public class CharacterMover : MonoBehaviour
     
     [Header("Movement Settings")]
     [SerializeField] private Vector3 moveDirection = Vector3.forward; // Direction to move
-    [SerializeField] private float rotationSpeed = 0.25f; // Speed of rotation
     [SerializeField] private float minMoveSpeed = 5f; // Speed of movement
     [SerializeField] private float maxMoveSpeed = 10f;
-    
+    [SerializeField] private float rotationSpeed = 0.25f; // Speed of rotation
+    [SerializeField, Range(0.1f, 90f)] private float maxTurnRotation = 45f; //Rotation Limit
+
     [Header("Deceleration Settings")]
     [SerializeField] private AnimationCurve decelerationCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
     
@@ -25,6 +26,7 @@ public class CharacterMover : MonoBehaviour
     private Coroutine _decelerationCoroutine;
     private bool _isSliding = false;
     private Vector2 _lastInputPos;
+    private Vector2 _groundLimit;
 
     public float MoveSpeed => _moveSpeed;
     public bool IsDecelerating => _isDecelerating;
@@ -36,6 +38,7 @@ public class CharacterMover : MonoBehaviour
         _moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         _originalSpeed = _moveSpeed;
         _moveSpeed = 0;
+        _groundLimit = LevelManager.Instance.GroundLimit;
     }
 
     private void OnEnable()
@@ -54,6 +57,24 @@ public class CharacterMover : MonoBehaviour
         // Calculate the movement vector
         Vector3 movement = (isPlayer) ? transform.forward * _moveSpeed * Time.deltaTime : moveDirection.normalized * _moveSpeed * Time.deltaTime;
         transform.position += movement;
+
+        LimitMovement();
+    }
+
+    private void LimitMovement()
+    {
+        Vector3 playerPos = transform.position;
+
+        playerPos.x = transform.position.x;
+        playerPos.x = Mathf.Clamp(playerPos.x, _groundLimit.x, _groundLimit.y);
+
+        transform.position = playerPos;
+
+        //Vector3 playerRota = transform.localRotation.eulerAngles;
+        //playerRota.y = (playerRota.y > 180) ? playerRota.y - 360 : playerRota.y;
+        //playerRota.y = Mathf.Clamp(playerRota.y, -maxTurnRotation, maxTurnRotation);
+
+        //transform.localRotation = Quaternion.Euler(playerRota);
     }
 
     private void RotationCharacter()
@@ -86,6 +107,9 @@ public class CharacterMover : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
+                    _isSliding = false;
+                    break;
+
                 case TouchPhase.Canceled:
                     _isSliding = false;
                     break;
@@ -112,6 +136,17 @@ public class CharacterMover : MonoBehaviour
                 _isSliding = false;
             }
         }
+
+        LimitRotation();
+    }
+
+    private void LimitRotation()
+    {
+        Vector3 playerRota = transform.localRotation.eulerAngles;
+        playerRota.y = (playerRota.y > 180) ? playerRota.y - 360 : playerRota.y;
+        playerRota.y = Mathf.Clamp(playerRota.y, -maxTurnRotation, maxTurnRotation);
+
+        transform.localRotation = Quaternion.Euler(playerRota);
     }
 
     // Public methods for speed control
