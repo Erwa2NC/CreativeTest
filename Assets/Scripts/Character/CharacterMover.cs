@@ -7,7 +7,11 @@ public class CharacterMover : MonoBehaviour
 {
     [SerializeField] 
     private bool isPlayer = false;
-    
+
+    [Header("Reference")]
+    [SerializeField] private Transform body;
+    [SerializeField] private CharacterBoost characterBoost;
+
     [Header("Movement Settings")]
     [SerializeField] private Vector3 moveDirection = Vector3.forward; // Direction to move
     [SerializeField] private float minMoveSpeed = 5f; // Speed of movement
@@ -55,7 +59,7 @@ public class CharacterMover : MonoBehaviour
     private void MoveCharacter()
     {
         // Calculate the movement vector
-        Vector3 movement = (isPlayer) ? transform.forward * _moveSpeed * Time.deltaTime : moveDirection.normalized * _moveSpeed * Time.deltaTime;
+        Vector3 movement = (isPlayer) ? body.forward * (_moveSpeed + characterBoost.GetBoostValue()) * Time.deltaTime : moveDirection.normalized * _moveSpeed * Time.deltaTime;
         transform.position += movement;
 
         LimitMovement();
@@ -69,12 +73,6 @@ public class CharacterMover : MonoBehaviour
         playerPos.x = Mathf.Clamp(playerPos.x, _groundLimit.x, _groundLimit.y);
 
         transform.position = playerPos;
-
-        //Vector3 playerRota = transform.localRotation.eulerAngles;
-        //playerRota.y = (playerRota.y > 180) ? playerRota.y - 360 : playerRota.y;
-        //playerRota.y = Mathf.Clamp(playerRota.y, -maxTurnRotation, maxTurnRotation);
-
-        //transform.localRotation = Quaternion.Euler(playerRota);
     }
 
     private void RotationCharacter()
@@ -101,7 +99,7 @@ public class CharacterMover : MonoBehaviour
                     if (_isSliding)
                     {
                         float deltaX = touch.position.x - _lastInputPos.x;
-                        transform.Rotate(Vector3.up, deltaX * rotationSpeed);
+                        body.Rotate(Vector3.up, deltaX * rotationSpeed);
                         _lastInputPos = touch.position;
                     }
                     break;
@@ -128,7 +126,7 @@ public class CharacterMover : MonoBehaviour
             {
                 Vector2 mousePos = Input.mousePosition;
                 float deltaX = mousePos.x - _lastInputPos.x;
-                transform.Rotate(Vector3.up, deltaX * rotationSpeed);
+                body.Rotate(Vector3.up, deltaX * rotationSpeed);
                 _lastInputPos = mousePos;
             }
             else if (Input.GetMouseButtonUp(0))
@@ -142,11 +140,11 @@ public class CharacterMover : MonoBehaviour
 
     private void LimitRotation()
     {
-        Vector3 playerRota = transform.localRotation.eulerAngles;
+        Vector3 playerRota = body.localRotation.eulerAngles;
         playerRota.y = (playerRota.y > 180) ? playerRota.y - 360 : playerRota.y;
         playerRota.y = Mathf.Clamp(playerRota.y, -maxTurnRotation, maxTurnRotation);
 
-        transform.localRotation = Quaternion.Euler(playerRota);
+        body.localRotation = Quaternion.Euler(playerRota);
     }
 
     // Public methods for speed control
