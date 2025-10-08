@@ -1165,7 +1165,7 @@ RectTransform:
   m_GameObject: {fileID: 511142449}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: -1.136}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1908404725}
@@ -3067,7 +3067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5023034018925223158, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5023034018925223158, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4128,6 +4128,18 @@ PrefabInstance:
       propertyPath: isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
+      propertyPath: minMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
+      propertyPath: characterBoost
+      value: 
+      objectReference: {fileID: 2049072606}
     - target: {fileID: 833281763991593357, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -4230,7 +4242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5023034018925223158, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5023034018925223158, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4375,6 +4387,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1382726013}
     m_Modifications:
+    - target: {fileID: 5234867302228759221, guid: eb3bbc0de9afbf0478710e2550609f0e, type: 3}
+      propertyPath: m_text
+      value: +5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727301245914729979, guid: eb3bbc0de9afbf0478710e2550609f0e, type: 3}
+      propertyPath: gateValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8266023825692787429, guid: eb3bbc0de9afbf0478710e2550609f0e, type: 3}
       propertyPath: m_Name
       value: GateLine
