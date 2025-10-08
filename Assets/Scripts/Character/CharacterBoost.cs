@@ -22,14 +22,9 @@ public class CharacterBoost : MonoBehaviour
         UpdateArrow();
     }
 
-    private void Awake()
-    {
-        boostValue = 0;
-    }
-
     public void SetBoostValue(float value)
     {
-        boostValue = value;
+        boostValue += value;
         UpdateArrow();
     }
 
@@ -42,7 +37,7 @@ public class CharacterBoost : MonoBehaviour
     {
         if (arrowArray == null || arrowArray.Length <= 0) return;
 
-        float normalizedValue = Mathf.Clamp01(boostValue / arrowArray.Length);
+        float normalizedValue = Mathf.Clamp01(boostValue / /*arrowArray.Length*/20);
 
         for (int i = 0; i < arrowArray.Length; i++)
         {
