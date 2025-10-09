@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 0.25f; // Speed of rotation
     [SerializeField, Range(0.1f, 90f)] private float maxTurnRotation = 45f; //Rotation Limit
+    [SerializeField] private float boostYPos = 0.5f; //Y pos when boost
 
     [Header("Deceleration Settings")]
     [SerializeField] private AnimationCurve decelerationCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
@@ -25,6 +27,7 @@ public class CharacterMover : MonoBehaviour
     private float _moveSpeed;
     private float _originalSpeed;
     private bool _isDecelerating = false;
+    private bool _isBoosting = false;
     private float _decelerationStartTime;
     private float _decelerationDuration = 2f;
     private Coroutine _decelerationCoroutine;
@@ -52,6 +55,11 @@ public class CharacterMover : MonoBehaviour
 
     private void Update()
     {
+        if (isPlayer)
+        {
+            CheckBoost();
+        }
+        
         RotationCharacter();
         MoveCharacter();
     }
@@ -158,6 +166,27 @@ public class CharacterMover : MonoBehaviour
         return _moveSpeed;
     }
     
+    public void CheckBoost()
+    {
+        bool previousState = _isBoosting;
+        _isBoosting = characterBoost.IsMaxBoost;
+
+        if (_isBoosting != previousState)
+        {
+            if(previousState) //Boost to Run
+            {
+                body.DOMoveY(0, 0.5f);
+
+            }
+
+            else //Run to boost
+            {
+                body.DOMoveY(0.5f, 0.5f);
+            }
+        }
+
+    }
+
     // Deceleration methods
     public void StartDeceleration(float duration = 2f)
     {

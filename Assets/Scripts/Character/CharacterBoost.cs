@@ -8,6 +8,7 @@ public class CharacterBoost : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject particles;
     [SerializeField] private Image[] arrowArray = new Image[6];
 
     [Header("Color Setings")]
@@ -17,14 +18,25 @@ public class CharacterBoost : MonoBehaviour
     [Header("Debug")]
     [SerializeField, Range(0, 20f)] private float boostValue = 1;
 
+    public bool IsMaxBoost = false;
+
+    #region Debug
+
     private void OnValidate()
     {
         UpdateArrow();
+        IsMaxBoost = boostValue >= 20;
+        particles.SetActive(IsMaxBoost);
     }
+
+    #endregion
 
     public void SetBoostValue(float value)
     {
         boostValue += value;
+
+        IsMaxBoost = boostValue >= 20;
+        particles.SetActive(IsMaxBoost);
         UpdateArrow();
     }
 
@@ -50,6 +62,6 @@ public class CharacterBoost : MonoBehaviour
             }
             else
                 arrowArray[i].color = inactiveColor;
-        }
+        }   
     }
 }
