@@ -9,11 +9,14 @@ public class Gate : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private TriggerChild triggerChild;
     [SerializeField] private TextMeshProUGUI gateText;
+    [SerializeField] private Animator animator;
 
     [Header("Settings")]
     [SerializeField, Range(-20, 20)] private int gateValue = 0;
     [SerializeField] private Color positivColor = Color.green;
     [SerializeField] private Color negativColor = Color.red;
+
+    private const string CLOSED_TRIGGER = "Closed";
 
     private void OnValidate()
     {
@@ -31,7 +34,7 @@ public class Gate : MonoBehaviour
         if(collider.TryGetComponent(out CharacterBoost characterBoost))
         {
             characterBoost.SetBoostValue(gateValue);
-            Debug.Log("Player gain " + gateValue + " off speed boost !!");
+            animator.SetTrigger(CLOSED_TRIGGER);
         }
     }
 

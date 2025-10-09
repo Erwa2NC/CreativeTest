@@ -183,7 +183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dad5b6f1d413f4a2d9fd35529c97a776, type: 2}
   m_sharedMaterial: {fileID: 2551414955423626727, guid: dad5b6f1d413f4a2d9fd35529c97a776, type: 2}
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284153708
-  m_fontColor: {r: 0.42166898, g: 1, b: 0.3537736, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -447,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7885924976388342821}
   - component: {fileID: 5148582281672962923}
+  - component: {fileID: 800890317704436946}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -484,7 +485,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerChild: {fileID: 4979364924647821045}
   gateText: {fileID: 7271747518280887333}
+  animator: {fileID: 800890317704436946}
   gateValue: 0
+  positivColor: {r: 0, g: 1, b: 0, a: 1}
+  negativColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!95 &800890317704436946
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724060906847028561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdb394ba903a63d45a3cc8b39f0fd330, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6105608381088355974
 GameObject:
   m_ObjectHideFlags: 0
