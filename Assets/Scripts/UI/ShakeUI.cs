@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Shake : MonoBehaviour
+public class ShakeUI : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private RectTransform[] targets = new RectTransform[0];

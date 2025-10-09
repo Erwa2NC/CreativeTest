@@ -36,12 +36,10 @@ public class CharacterAnimationController : MonoBehaviour
         UpdateAnimation();
     }
 
-
     protected virtual void UpdateAnimation()
     {
         if (animator == null) return;
         
         animator.SetBool(RUN_BOOLEAN, characterMover.MoveSpeed > runThreshold);
     }
-  
 }
