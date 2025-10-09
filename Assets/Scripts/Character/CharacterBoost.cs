@@ -8,6 +8,7 @@ public class CharacterBoost : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject particles;
     [SerializeField] private Image[] arrowArray = new Image[6];
 
     [Header("Color Setings")]
@@ -51,5 +52,8 @@ public class CharacterBoost : MonoBehaviour
             else
                 arrowArray[i].color = inactiveColor;
         }
+
+        if (boostValue >= 20)
+            particles.SetActive(true);
     }
 }

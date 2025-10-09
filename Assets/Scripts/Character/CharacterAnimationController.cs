@@ -5,15 +5,15 @@ using UnityEngine;
 public class CharacterAnimationController : MonoBehaviour
 {
     [Header("Animation Settings")]
-    [SerializeField] private Animator animator; // Reference to the Animator component
-    [SerializeField] private float runThreshold = 0.1f; // Speed threshold to trigger run animation
+    [SerializeField] protected Animator animator; // Reference to the Animator component
+    [SerializeField] protected float runThreshold = 0.1f; // Speed threshold to trigger run animation
     
     [Header("References")]
-    [SerializeField] private CharacterMover characterMover; // Reference to the CharacterMover component
-    
-    private const string RUN_BOOLEAN = "Run";
-    
-    void Start()
+    [SerializeField] protected CharacterMover characterMover; // Reference to the CharacterMover component
+
+    protected const string RUN_BOOLEAN = "Run";
+
+    protected virtual void Start()
     {
         if (animator == null)
         {
@@ -30,14 +30,14 @@ public class CharacterAnimationController : MonoBehaviour
             animator.SetBool(RUN_BOOLEAN, false);
         }
     }
-    
-    void LateUpdate()
+
+    protected virtual void LateUpdate()
     {
         UpdateAnimation();
     }
 
-    
-    private void UpdateAnimation()
+
+    protected virtual void UpdateAnimation()
     {
         if (animator == null) return;
         

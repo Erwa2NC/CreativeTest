@@ -19,7 +19,6 @@ public class Shake : MonoBehaviour
     
     private void Awake()
     {
-        // Sauvegarde des positions d’origine
         _originalAnchoredPositions = new Vector2[targets.Length];
         for (int i = 0; i < targets.Length; i++)
         {
@@ -27,7 +26,6 @@ public class Shake : MonoBehaviour
                 _originalAnchoredPositions[i] = targets[i].anchoredPosition;
         }
 
-        // Petit décalage aléatoire pour que les objets ne bougent pas tous pareil
         _timeOffset = Random.value * 100f;
     }
 
@@ -46,9 +44,6 @@ public class Shake : MonoBehaviour
         float amplitude = Mathf.Lerp(0f, maxAmplitude, curvedValue);
         float frequency = Mathf.Lerp(0f, maxFrequency, curvedValue);
 
-        Debug.Log("frequency :" + frequency);
-
-        // Si la valeur est proche de zéro, on remet doucement les positions d’origine
         if (normalized <= 0.01f)
         {
             for (int i = 0; i < targets.Length; i++)
@@ -59,12 +54,11 @@ public class Shake : MonoBehaviour
             return;
         }
 
-        // Application du shake
         for (int i = 0; i < targets.Length; i++)
         {
             if (targets[i] == null) continue;
 
-            float seed = _timeOffset + i * 10f; // variation par élément
+            float seed = _timeOffset + i * 10f;
             Vector2 randomOffset = new Vector2(
                 Mathf.PerlinNoise(Time.time * frequency + seed, 0f) - 0.5f,
                 Mathf.PerlinNoise(0f, Time.time * frequency + seed) - 0.5f
