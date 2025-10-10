@@ -1,21 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterColorController : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] private CharacterBoost characterBoost;
+
     [Header("Color Settings")]
     [SerializeField] private CharacterColorData colorData;
     [SerializeField] private Renderer characterRenderer;
     [SerializeField] private string colorPropertyName = "_Color";
     [SerializeField] private bool useRandomColorOnStart = false;
-    
+
+    [Header("Gradient Settings")]
+    [SerializeField] private Gradient colorGradient;
+    [SerializeField] private float gradientDuration = 2f;
+    [SerializeField] private bool loopGradient = true;
+
     [Header("Current Color")]
     [SerializeField] private int currentColorIndex = 0;
     
     private MaterialPropertyBlock propertyBlock;
     private int colorPropertyID;
-    
+    private Coroutine boostColorSwapCoroutine;
+    private bool _isBoosting =  false;
+
     void Awake()
     {
         propertyBlock = new MaterialPropertyBlock();
@@ -43,7 +54,27 @@ public class CharacterColorController : MonoBehaviour
             ApplyColor(currentColorIndex);
         }
     }
-    
+
+    private void Update()
+    {
+        if(characterBoost !=  null)
+            CheckIfBoost();
+    }
+
+    private void CheckIfBoost()
+    {
+        if(characterBoost.IsMaxBoost && !_isBoosting)
+        {
+            _isBoosting = true;
+            StartBoostColorSwap();
+        }
+        else if(!characterBoost.IsMaxBoost && _isBoosting)
+        {
+            _isBoosting = false;
+            StopBoostColorSwap();
+        }
+    }
+
     public void SetColor(int colorIndex)
     {
         if (colorData == null || characterRenderer == null) return;
@@ -96,4 +127,48 @@ public class CharacterColorController : MonoBehaviour
         Color color = colorData.GetColor(colorIndex);
         SetColor(color);
     }
+
+    public void StartBoostColorSwap()
+    {
+        if (boostColorSwapCoroutine != null)
+            StopCoroutine(boostColorSwapCoroutine);
+
+        boostColorSwapCoroutine = StartCoroutine(BoostColorSwapCoroutine());
+    }
+
+    public void StopBoostColorSwap()
+    {
+        if (boostColorSwapCoroutine != null)
+        {
+            StopCoroutine(boostColorSwapCoroutine);
+            boostColorSwapCoroutine = null;
+        }
+    }
+
+    private IEnumerator BoostColorSwapCoroutine()
+    {
+        float time = 0f;
+
+        while (true)
+        {
+            float t = Mathf.Clamp01(time / gradientDuration);
+            Color gradientColor = colorGradient.Evaluate(t);
+            SetColor(gradientColor);
+
+            time += Time.deltaTime;
+
+            if (time >= gradientDuration)
+            {
+                if (loopGradient)
+                    time = 0f;
+                else
+                    break;
+            }
+
+            yield return null;
+        }
+
+        boostColorSwapCoroutine = null;
+    }
+
 }

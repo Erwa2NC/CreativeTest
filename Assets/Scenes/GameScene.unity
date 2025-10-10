@@ -9797,6 +9797,90 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: characterBoost
+      value: 
+      objectReference: {fileID: 4896501441602625198}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: gradientDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.ctime1
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.ctime3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key1.b
+      value: 0.05098039
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key1.g
+      value: 0.805554
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key2.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key3.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key3.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.key3.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239158779525597325, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: colorGradient.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692176548212952745, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692176548212952745, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692176548212952745, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.59607846
+      objectReference: {fileID: 0}
     - target: {fileID: 8413512866075773514, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
       propertyPath: body
       value: 
@@ -9812,6 +9896,18 @@ PrefabInstance:
     - target: {fileID: 8413512866075773514, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
       propertyPath: _originalPosition.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507911184669816695, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507911184669816695, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507911184669816695, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.59607846
       objectReference: {fileID: 0}
     - target: {fileID: 8835705055426048194, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
       propertyPath: m_Name
@@ -9833,6 +9929,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b14d885447fb4fa68fe795ca383b58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4896501441602625198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1604690631230420691, guid: 4176af60009d73d4b9c2fb0d155002f2, type: 3}
+  m_PrefabInstance: {fileID: 1141418941467994718}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2746df77aa1a5d4a885481f38e35ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5867142178775197657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9851,7 +9958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7727301245914729979, guid: eb3bbc0de9afbf0478710e2550609f0e, type: 3}
       propertyPath: gateValue
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8266023825692787429, guid: eb3bbc0de9afbf0478710e2550609f0e, type: 3}
       propertyPath: m_Name

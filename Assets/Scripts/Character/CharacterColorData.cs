@@ -9,7 +9,7 @@ public class CharacterColorData : ScriptableObject
 {
     [Header("Character Colors")]
     [SerializeField] private List<Color> availableColors = new List<Color>();
-    
+
     [Header("Default Settings")]
     [SerializeField] private int defaultColorIndex = 0;
     
