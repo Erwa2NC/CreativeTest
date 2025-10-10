@@ -26,7 +26,7 @@ public class CharacterBoost : MonoBehaviour
     {
         UpdateArrow();
         IsMaxBoost = boostValue >= 20;
-        particles.SetActive(IsMaxBoost);
+        ParticlesTrigger(IsMaxBoost);
     }
 
     #endregion
@@ -36,7 +36,7 @@ public class CharacterBoost : MonoBehaviour
         boostValue += value;
 
         IsMaxBoost = boostValue >= 20;
-        particles.SetActive(IsMaxBoost);
+        ParticlesTrigger(IsMaxBoost);
         UpdateArrow();
     }
 
@@ -63,5 +63,12 @@ public class CharacterBoost : MonoBehaviour
             else
                 arrowArray[i].color = inactiveColor;
         }   
+    }
+
+    private void ParticlesTrigger(bool state)
+    {
+        if(particles == null) return;
+
+        particles.SetActive(state);
     }
 }

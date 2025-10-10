@@ -67,7 +67,7 @@ public class CharacterMover : MonoBehaviour
     private void MoveCharacter()
     {
         // Calculate the movement vector
-        Vector3 movement = (isPlayer) ? body.forward * (_moveSpeed + characterBoost.GetBoostValue()) * Time.deltaTime : moveDirection.normalized * _moveSpeed * Time.deltaTime;
+        Vector3 movement = (isPlayer) ? body.forward * (_moveSpeed + characterBoost.GetBoostValue()) * Time.deltaTime : moveDirection.normalized * (_moveSpeed + characterBoost.GetBoostValue()) * Time.deltaTime;
         transform.position += movement;
 
         LimitMovement();
