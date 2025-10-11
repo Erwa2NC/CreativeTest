@@ -20,16 +20,21 @@ public class CharacterBoost : MonoBehaviour
 
     public bool IsMaxBoost = false;
 
-    #region Debug
+    //#region Debug
 
-    private void OnValidate()
+    //private void OnValidate()
+    //{
+    //    UpdateArrow();
+    //    IsMaxBoost = boostValue >= 20;
+    //    ParticlesTrigger(IsMaxBoost);
+    //}
+
+    //#endregion
+
+    private void Start()
     {
         UpdateArrow();
-        IsMaxBoost = boostValue >= 20;
-        ParticlesTrigger(IsMaxBoost);
     }
-
-    #endregion
 
     public void SetBoostValue(float value)
     {
