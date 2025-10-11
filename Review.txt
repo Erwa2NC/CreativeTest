@@ -1,0 +1,4 @@
+I really liked having access to the official character assets from the game — it really helps to visualize and get into the project!
+What could be improved, although it’s not directly related to the test itself, is the fact that the bots and the player share some of the same classes. I didn’t find that very practical — having a common parent class would seem more appropriate to me.
+
+I used ChatGPT to help me with certain bits of code, such as my Shake class that makes the UI shake!
